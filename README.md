@@ -1,15 +1,15 @@
 Инструкция для связки Gunicorn + Nginx + Django:
 
-1. Установка Nginx:  
+Установка Nginx:  
 
 
     sudo apt install nginx
 
-2. Установка Gunicorn:  
+Установка Gunicorn:  
 
 
     pip install gunicorn
-3. Создание файлa сокета Gunicorn:
+Создание файлa сокета Gunicorn:
 
 
     sudo nano /etc/systemd/system/gunicorn.socket  
@@ -25,7 +25,7 @@
 
     [Install]  
     WantedBy=sockets.target
-4. Создание служебного файлв gunicorn.service:  
+Создание служебного файлв gunicorn.service:  
 
 
     sudo nano /etc/systemd/system/gunicorn.service  
@@ -51,13 +51,13 @@
     [Install]  
     WantedBy=multi-user.target
 
-5. Запуск и активация сокета Gunicorn:  
+Запуск и активация сокета Gunicorn:  
 
 
     sudo systemctl start gunicorn.socket  
     sudo systemctl enable gunicorn.socket
 
-6. Проверка состояния процесса:  
+Проверка состояния процесса:  
 
 
     sudo systemctl status gunicorn.socket
@@ -67,7 +67,7 @@
 
     sudo journalctl -u gunicorn.socket
 
-7. Тест механизма активации сокета:  
+Тест механизма активации сокета:  
 
 
     curl --unix-socket /run/gunicorn.sock localhost
@@ -81,7 +81,7 @@
 
     sudo journalctl -u gunicorn
 
-8. Настройка Nginx как прокси для Gunicorn:  
+Настройка Nginx как прокси для Gunicorn:  
 
 Для начала создаем серверный блок:  
 
