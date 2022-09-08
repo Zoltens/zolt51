@@ -4,6 +4,7 @@
 
 
     sudo apt install nginx
+
 2. Установка Gunicorn:  
 
 
