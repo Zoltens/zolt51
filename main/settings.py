@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'test_task.apps.TestTaskConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

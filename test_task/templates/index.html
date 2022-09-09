@@ -3,8 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
-<h2>Hello</h2>
+<h2>Динамическое добавление форм</h2>
+<form action="{% url 'save' %}" method="POST">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <div id="form_set">
+        {% for form in formset %}
+            <p>{{ form.as_table }}</p>
+        {% endfor %}
+    </div>
+    <input type="button" value="Добавить форму" id="add_form">
+    <input type="submit" value="Созранить">
+    <div id="empty_form" style="display: none">
+        <p>{{ formset.empty_form.as_table }}</p>
+    </div>
+</form>
+<script>
+    $('#add_form').click(function () {
+        var form_idx = $('#id_form-TOTAL_FORMS').val();
+        $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+        $('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+    });
+</script>
 </body>
 </html>
